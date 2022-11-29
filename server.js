@@ -34,4 +34,4 @@ createTerminus(server, {
   useExit0: true 
 })
 
-server.listen(PORT, () => {logger.info(`"app-a" listening on port ${PORT}`)})
+server.listen(PORT, () => {logger.info(`app-a listening on port ${PORT}`)})
