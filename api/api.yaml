@@ -1,0 +1,20 @@
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: app-a-api
+  description: API definition of app-a
+spec:
+  type: openapi
+  owner: team-a
+  lifecycle: production
+  definition: |
+    openapi: "3.0.0"
+    info:
+      version: 1.0.0
+      title: app-a API
+    servers:
+    - url: https://app-a.127.0.0.1.nip.io
+    paths:
+      /:
+        get:
+          summary: Returns hello
