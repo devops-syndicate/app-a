@@ -7,5 +7,5 @@ resources:
 configMapGenerator:
   - name: app-a
     literals:
-      - "OTEL_SERVICE_NAME=app-acd"
+      - "OTEL_SERVICE_NAME=app-a"
       - "OTEL_TRACE_ENDPOINT=http://loki.loki:4318/v1/traces"
