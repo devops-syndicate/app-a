@@ -8,4 +8,4 @@ configMapGenerator:
   - name: app-a
     literals:
       - "OTEL_SERVICE_NAME=app-a"
-      - "OTEL_EXPORTER_OTLP_ENDPOINT=http://loki.loki:4318"
+      - "OTEL_EXPORTER_OTLP_ENDPOINT=http://tempo.tempo:4318"
