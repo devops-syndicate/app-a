@@ -13,11 +13,11 @@ spec:
               configMapKeyRef:
                 name: app-a
                 key: OTEL_SERVICE_NAME
-          - name: OTEL_TRACE_ENDPOINT
+          - name: OTEL_EXPORTER_OTLP_ENDPOINT
             valueFrom:
               configMapKeyRef:
                 name: app-a
-                key: OTEL_TRACE_ENDPOINT
+                key: OTEL_EXPORTER_OTLP_ENDPOINT
         image: sselzer/app-a
         port: 8080
       traits:
