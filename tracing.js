@@ -10,6 +10,7 @@ const {
 const {
   OTLPTraceExporter,
 } = require("@opentelemetry/exporter-trace-otlp-http");
+const logger = require("./logger");
 const { SERVICE_NAME, SERVICE_VERSION } = SemanticResourceAttributes;
 
 const appName = process.env.OTEL_SERVICE_NAME || "app-a";
@@ -23,4 +24,7 @@ const sdk = new opentelemetry.NodeSDK({
   resource,
   instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
 });
-sdk.start();
+sdk
+  .start()
+  .then(() => logger.info("Tracing initialized"))
+  .catch((error) => logger.error("Error initializing tracing", error));
