@@ -23,4 +23,4 @@ const sdk = new opentelemetry.NodeSDK({
   resource,
   instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
 });
-await sdk.start();
+sdk.start();
