@@ -7,6 +7,8 @@ RUN ["npm", "ci", "--only=production"]
 
 FROM gcr.io/distroless/nodejs:18
 
+ENV NODE_ENV = "production"
+
 WORKDIR /usr/src/app
 
 COPY --from=builder /usr/src/app/ ./

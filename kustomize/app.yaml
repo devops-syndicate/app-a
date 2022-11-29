@@ -4,25 +4,35 @@ metadata:
   name: app-a
 spec:
   components:
-  - name: app-a
-    type: webservice
-    properties:
-      image: sselzer/app-a
-      port: 8080
-      
-    traits:
-    - type: annotations
+    - name: app-a
+      type: webservice
       properties:
-        "prometheus.io/scrape": "true"
-        "prometheus.io/path": /metrics
-        "prometheus.io/port": "8080"
-    - type: gateway
-      properties:
-        domain: app-a.127.0.0.1.nip.io
-        http:
-          "/": 8080
-    - type: cpuscaler
-      properties:
-        min: 2
-        max: 5
-        cpuPercent: 80
+        env:
+          - name: OTEL_SERVICE_NAME
+            valueFrom:
+              configMapKeyRef:
+                name: app-a
+                key: OTEL_SERVICE_NAME
+          - name: OTEL_TRACE_ENDPOINT
+            valueFrom:
+              configMapKeyRef:
+                name: app-a
+                key: OTEL_TRACE_ENDPOINT
+        image: sselzer/app-a
+        port: 8080
+      traits:
+        - type: annotations
+          properties:
+            "prometheus.io/scrape": "true"
+            "prometheus.io/path": /metrics
+            "prometheus.io/port": "8080"
+        - type: gateway
+          properties:
+            domain: app-a.127.0.0.1.nip.io
+            http:
+              "/": 8080
+        - type: cpuscaler
+          properties:
+            min: 2
+            max: 5
+            cpuPercent: 80

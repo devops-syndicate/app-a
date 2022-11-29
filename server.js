@@ -1,3 +1,4 @@
+require('./tracing')
 const http = require('http')
 const express = require('express')
 const logger = require('./logger')
