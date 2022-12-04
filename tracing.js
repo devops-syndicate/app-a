@@ -1,16 +1,9 @@
 const opentelemetry = require("@opentelemetry/sdk-node");
 const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
-const {
-  ExpressInstrumentation,
-} = require("@opentelemetry/instrumentation-express");
+const { ExpressInstrumentation } = require("@opentelemetry/instrumentation-express");
+const { WinstonInstrumentation } = require('@opentelemetry/instrumentation-winston');
 const { Resource } = require("@opentelemetry/resources");
-const {
-  SemanticResourceAttributes,
-} = require("@opentelemetry/semantic-conventions");
-const {
-  OTLPTraceExporter,
-} = require("@opentelemetry/exporter-trace-otlp-http");
-const logger = require("./logger");
+const { SemanticResourceAttributes } = require("@opentelemetry/semantic-conventions");
 const { JaegerExporter } = require("@opentelemetry/exporter-jaeger");
 const { SERVICE_NAME, SERVICE_VERSION } = SemanticResourceAttributes;
 
@@ -25,13 +18,10 @@ const options = {
 };
 
 const sdk = new opentelemetry.NodeSDK({
-  traceExporter: new JaegerExporter(options),
+  traceExporter: new JaegerExporter(),
   resource,
-  instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation()],
+  instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation(), new WinstonInstrumentation()]
 });
-sdk
-  .start()
-  .then(() => logger.info("Tracing initialized"))
-  .catch((error) => logger.error("Error initializing tracing", error));
+sdk.start();
 
 module.exports = sdk;
