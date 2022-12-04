@@ -18,7 +18,7 @@ const options = {
 };
 
 const sdk = new opentelemetry.NodeSDK({
-  traceExporter: new JaegerExporter(),
+  traceExporter: new JaegerExporter(options),
   resource,
   instrumentations: [new HttpInstrumentation(), new ExpressInstrumentation(), new WinstonInstrumentation()]
 });
