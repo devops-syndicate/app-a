@@ -5,7 +5,15 @@ const logger = require("./logger");
 const app = express();
 const promBundle = require("express-prom-bundle");
 const { createTerminus } = require("@godaddy/terminus");
+const Pyroscope = require('@pyroscope/nodejs');
 const PORT = 8080;
+
+Pyroscope.init({
+  serverAddress: process.env.PYROSCOPE_URL,
+  appName: 'app-a'
+});
+
+Pyroscope.start()
 
 const metricsMiddleware = promBundle({
   includeMethod: true,
