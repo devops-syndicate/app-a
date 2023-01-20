@@ -6,21 +6,22 @@ const app = express();
 const promBundle = require("express-prom-bundle");
 const { createTerminus } = require("@godaddy/terminus");
 const Pyroscope = require('@pyroscope/nodejs');
+const APP_NAME = "app-a";
 const PORT = 8080;
 
 Pyroscope.init({
-  serverAddress: process.env.PYROSCOPE_URL,
-  appName: 'app-a'
+  serverAddress: process.env.PYROSCOPE_URL || "http://pyroscope:4040",
+  appName: APP_NAME
 });
 
-Pyroscope.start()
+Pyroscope.start();
 
 const metricsMiddleware = promBundle({
   includeMethod: true,
   includePath: true,
   includeStatusCode: true,
   includeUp: true,
-  customLabels: { app: "app-a" },
+  customLabels: { app: APP_NAME },
   promClient: { collectDefaultMetrics: {} },
 });
 
@@ -28,7 +29,7 @@ app.use(metricsMiddleware);
 
 app.get("/", (_, res) => {
   logger.info("Call hello endpoint");
-  res.send('Hello "app-a"!');
+  res.send(`Hello "${APP_NAME}"!`);
 });
 
 const server = http.createServer(app);
@@ -45,5 +46,5 @@ createTerminus(server, {
 });
 
 server.listen(PORT, () => {
-  logger.info(`app-a listening on port ${PORT}`);
+  logger.info(`${APP_NAME} listening on port ${PORT}`);
 });
