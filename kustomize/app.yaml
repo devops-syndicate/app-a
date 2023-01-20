@@ -40,6 +40,6 @@ spec:
               "/": 8080
         - type: cpuscaler
           properties:
-            min: 2
+            min: 4
             max: 5
             cpuPercent: 80
