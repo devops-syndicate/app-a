@@ -31,6 +31,8 @@ spec:
             "prometheus.io/scrape": "true"
             "prometheus.io/path": /metrics
             "prometheus.io/port": "8080"
+            "phlare.grafana.com/scrape": "true"
+            "phlare.grafana.com/port": "8080"
         - type: gateway
           properties:
             class: traefik

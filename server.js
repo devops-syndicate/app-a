@@ -10,17 +10,16 @@ const APP_NAME = "app-a";
 const PORT = 8080;
 
 Pyroscope.init({
-  serverAddress: process.env.PYROSCOPE_URL || "http://pyroscope:4040",
   appName: APP_NAME,
 });
-
-Pyroscope.start();
 
 app.use(
   metrics({
     metricsPath: "/metrics",
   })
 );
+
+app.use(Pyroscope.expressMiddleware());
 
 app.get("/", (_, res) => {
   logger.info("Call hello endpoint");
