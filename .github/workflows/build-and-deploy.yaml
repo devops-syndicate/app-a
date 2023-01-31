@@ -45,7 +45,7 @@ jobs:
     - name: Update image version
       run: |
         cd app/kustomize
-        kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:${{ steps.vars.outputs.tag }}
+        kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:${{ needs.publish_image.outputs.tag }}
         kustomize build
     - name: Check out ArgoCD apps repository
       uses: actions/checkout@v3
