@@ -28,7 +28,9 @@ const sdk = new opentelemetry.NodeSDK({
   resource,
   instrumentations: [
     new HttpInstrumentation(),
-    new ExpressInstrumentation(),
+    new ExpressInstrumentation({
+      ignoreLayers: ["/metrics"],
+    }),
     new WinstonInstrumentation(),
   ],
 });
