@@ -23,6 +23,11 @@ spec:
               configMapKeyRef:
                 name: app-a
                 key: PYROSCOPE_URL
+          - name: SERVICE_B_URL
+            valueFrom:
+              configMapKeyRef:
+                name: app-a
+                key: SERVICE_B_URL
         image: sselzer/app-a
         port: 8080
       traits:
