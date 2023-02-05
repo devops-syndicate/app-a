@@ -1,9 +1,6 @@
 const opentelemetry = require("@opentelemetry/sdk-node");
 const { HttpInstrumentation } = require("@opentelemetry/instrumentation-http");
 const {
-  FetchInstrumentation,
-} = require("@opentelemetry/instrumentation-fetch");
-const {
   ExpressInstrumentation,
 } = require("@opentelemetry/instrumentation-express");
 const {
@@ -14,7 +11,6 @@ const {
   SemanticResourceAttributes,
 } = require("@opentelemetry/semantic-conventions");
 const { JaegerExporter } = require("@opentelemetry/exporter-jaeger");
-const { ZoneContextManager } = require("@opentelemetry/context-zone");
 const { SERVICE_NAME, SERVICE_VERSION } = SemanticResourceAttributes;
 
 const appName = process.env.OTEL_SERVICE_NAME || "app-a";
@@ -30,12 +26,10 @@ const options = {
 const sdk = new opentelemetry.NodeSDK({
   traceExporter: new JaegerExporter(options),
   resource,
-  contextManager: new ZoneContextManager(),
   instrumentations: [
     new HttpInstrumentation(),
     new ExpressInstrumentation(),
     new WinstonInstrumentation(),
-    new FetchInstrumentation(),
   ],
 });
 sdk.start();
