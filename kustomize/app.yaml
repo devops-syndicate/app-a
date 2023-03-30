@@ -46,3 +46,7 @@ spec:
             min: 2
             max: 5
             cpuPercent: 80
+        - type: resource
+          properties:
+            cpu: 0.5
+            memory: 128Mi
