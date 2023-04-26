@@ -18,8 +18,6 @@ Pyroscope.init({
   appName: APP_NAME,
 });
 
-Pyroscope.start();
-
 app.use(
   metrics({
     metricsPath: "/metrics",
