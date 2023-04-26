@@ -31,11 +31,6 @@ spec:
         image: sselzer/app-a
         port: 8080
       traits:
-        - type: annotations
-          properties:
-            "prometheus.io/scrape": "true"
-            "prometheus.io/path": /metrics
-            "prometheus.io/port": "8080"
         - type: gateway
           properties:
             domain: app-a.127.0.0.1.nip.io

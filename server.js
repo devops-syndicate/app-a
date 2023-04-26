@@ -20,12 +20,6 @@ Pyroscope.init({
 
 Pyroscope.start();
 
-app.use(
-  metrics({
-    metricsPath: "/metrics",
-  })
-);
-
 app.get("/", (_, res) => {
   logger.info("Call hello endpoint");
   res.send(`Hello "${APP_NAME}"!`);
