@@ -13,12 +13,11 @@ const PORT = 8080;
 const SERVICE_B_URL = process.env.SERVICE_B_URL || "http://127.0.0.1:3000";
 const PYROSCOPE_URL = process.env.PYROSCOPE_URL || "http://pyroscope:4040";
 
-Pyroscope.init({
-  serverAddress: PYROSCOPE_URL,
-  appName: APP_NAME,
-});
-
-Pyroscope.start();
+app.use(
+  metrics({
+    metricsPath: "/metrics",
+  })
+);
 
 app.get("/", (_, res) => {
   logger.info("Call hello endpoint");
