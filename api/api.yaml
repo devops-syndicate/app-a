@@ -13,7 +13,7 @@ spec:
       version: 1.0.0
       title: app-a API
     servers:
-    - url: https://app-a.127.0.0.1.nip.io
+    - url: http://app-a.127.0.0.1.nip.io
     paths:
       /:
         get:
