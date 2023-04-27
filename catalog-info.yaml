@@ -15,3 +15,5 @@ spec:
   lifecycle: production
   providesApis:
   - app-a-api
+  consumesApis:
+  - app-b-api
