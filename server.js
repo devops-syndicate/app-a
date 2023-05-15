@@ -2,6 +2,7 @@ const traceSdk = require("./tracing");
 const http = require("http");
 const express = require("express");
 const logger = require("./logger");
+const metrics = require("express-prometheus-metrics");
 const app = express();
 const { createTerminus } = require("@godaddy/terminus");
 const Pyroscope = require("@pyroscope/nodejs");
