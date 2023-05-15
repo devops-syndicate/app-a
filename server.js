@@ -21,7 +21,11 @@ Pyroscope.init({
 
 Pyroscope.start();
 
-app.use(helmet());
+app.use(
+  helmet({
+    xPoweredBy: false,
+  })
+);
 
 app.use(
   metrics({
