@@ -4,6 +4,7 @@ const express = require("express");
 const logger = require("./logger");
 const app = express();
 const { createTerminus } = require("@godaddy/terminus");
+const Pyroscope = require("@pyroscope/nodejs");
 const { default: axios } = require("axios");
 
 const APP_NAME = "app-a";
