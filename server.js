@@ -3,6 +3,7 @@ const http = require("http");
 const express = require("express");
 const logger = require("./logger");
 const metrics = require("express-prometheus-metrics");
+const helmet = require("helmet");
 const app = express();
 const { createTerminus } = require("@godaddy/terminus");
 const Pyroscope = require("@pyroscope/nodejs");
@@ -19,6 +20,8 @@ Pyroscope.init({
 });
 
 Pyroscope.start();
+
+app.use(helmet());
 
 app.use(
   metrics({
