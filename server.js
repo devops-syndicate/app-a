@@ -4,7 +4,6 @@ const express = require("express");
 const logger = require("./logger");
 const metrics = require("express-prometheus-metrics");
 const helmet = require("helmet");
-const app = express();
 const { createTerminus } = require("@godaddy/terminus");
 const Pyroscope = require("@pyroscope/nodejs");
 const { default: axios } = require("axios");
@@ -14,6 +13,8 @@ const PORT = 8080;
 const SERVICE_B_URL = process.env.SERVICE_B_URL || "http://127.0.0.1:3000";
 const PYROSCOPE_URL = process.env.PYROSCOPE_URL || "http://pyroscope:4040";
 
+const app = express();
+
 Pyroscope.init({
   serverAddress: PYROSCOPE_URL,
   appName: APP_NAME,
@@ -22,16 +23,12 @@ Pyroscope.init({
 Pyroscope.start();
 
 app.use(
-  helmet({
-    xPoweredBy: false,
-  })
-);
-
-app.use(
   metrics({
     metricsPath: "/metrics",
   })
 );
+
+app.use(helmet());
 
 app.get("/", (_, res) => {
   logger.info("Call hello endpoint");
