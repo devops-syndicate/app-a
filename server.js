@@ -14,6 +14,9 @@ const SERVICE_B_URL = process.env.SERVICE_B_URL || "http://127.0.0.1:3000";
 const PYROSCOPE_URL = process.env.PYROSCOPE_URL || "http://pyroscope:4040";
 
 const app = express();
+const metricsApp = metrics({
+  metricsPath: "/metrics",
+});
 
 Pyroscope.init({
   serverAddress: PYROSCOPE_URL,
@@ -22,13 +25,10 @@ Pyroscope.init({
 
 Pyroscope.start();
 
-app.use(
-  metrics({
-    metricsPath: "/metrics",
-  })
-);
-
 app.use(helmet());
+metricsApp.use(helmet());
+
+app.use(metricsApp);
 
 app.get("/", (_, res) => {
   logger.info("Call hello endpoint");

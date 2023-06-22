@@ -10,4 +10,4 @@ configMapGenerator:
       - "PYROSCOPE_URL=http://pyroscope.pyroscope:4040"
       - "SERVICE_B_URL=http://app-b.app-b:8080"
       - "OTEL_SERVICE_NAME=app-a"
-      - "OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT=http://tempo.tempo:14268/api/traces"
+      - "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=http://tempo.tempo:4318/v1/traces"
