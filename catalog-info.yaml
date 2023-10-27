@@ -9,6 +9,8 @@ metadata:
   links:
   - title: Link to ArgoCD
     url: http://argo-cd.127.0.0.1.nip.io/applications/app-a
+  tags:
+  - nodejs
 spec:
   type: service
   owner: team-a
