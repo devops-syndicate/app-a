@@ -21,3 +21,5 @@ spec:
   - app-a-api
   consumesApis:
   - app-b-api
+  dependsOn:
+  - component:default/app-b
