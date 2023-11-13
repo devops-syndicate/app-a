@@ -5,6 +5,7 @@ metadata:
   annotations:
     github.com/project-slug: "devops-syndicate/app-a"
     backstage.io/kubernetes-namespace: app-a
+    backstage.io/kubernetes-id: app-a
     argocd/app-name: app-a
     backstage.io/techdocs-ref: dir:.
   links:
