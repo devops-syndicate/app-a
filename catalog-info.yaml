@@ -6,6 +6,7 @@ metadata:
     github.com/project-slug: "devops-syndicate/app-a"
     backstage.io/kubernetes-namespace: app-a
     backstage.io/kubernetes-id: app-a
+    backstage.io/kubernetes-label-selector: 'app.oam.dev/name=app-a'
     argocd/app-name: app-a
     backstage.io/techdocs-ref: dir:.
   links:
