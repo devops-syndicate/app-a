@@ -46,7 +46,6 @@ jobs:
       run: |
         cd app/kustomize
         kustomize edit set image ${{ env.IMAGE_NAME }}=${{ env.IMAGE_NAME }}:${{ needs.publish_image.outputs.tag }}
-        kustomize build
     - name: Check out ArgoCD apps repository
       uses: actions/checkout@v3
       with:
@@ -58,7 +57,7 @@ jobs:
       run: |
         cd argocd-apps
         [ ! -d apps/${{ env.APP_NAME }} ] && mkdir -p apps/${{ env.APP_NAME }}
-        kustomize build ../app/kustomize > apps/${{ env.APP_NAME }}/app.yaml
+        kustomize build ../app/kustomize -o apps/${{ env.APP_NAME }}/app.yaml
     - name: Commit and push change new version to ArgoCD apps repository
       run: |
         cd argocd-apps

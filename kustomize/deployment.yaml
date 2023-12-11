@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-a
+spec:
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: app-a
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      labels:
+        app: app-a
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: app-a
+        image: sselzer/app-a
+        name: app-a
+        resources: {}
+        ports:
+        - containerPort: 8080
+          protocol: TCP
