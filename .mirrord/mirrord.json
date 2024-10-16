@@ -1,0 +1,15 @@
+{
+  "target": {
+    "path": "deployment/app-a",
+    "namespace": "app-a"
+  },
+  "feature": {
+    "env": true,
+    "fs": "read",
+    "network": {
+      "incoming": {
+        "mode": "steal"
+      }
+    }
+  }
+}
