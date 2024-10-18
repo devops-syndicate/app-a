@@ -32,7 +32,7 @@ app.use(metricsApp);
 
 app.get("/", (_, res) => {
   logger.info("Call hello endpoint");
-  res.send(`Hello "${APP_NAME}"!`);
+  res.send(`Hello new!`);
 });
 
 app.get("/proxy", async (_, res) => {
