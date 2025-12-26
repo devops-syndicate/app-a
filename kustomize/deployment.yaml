@@ -20,6 +20,7 @@ spec:
         prometheus.io/scrape: "true"
       labels:
         app: app-a
+        app.kubernetes.io/name: app-a
     spec:
       containers:
       - envFrom:
